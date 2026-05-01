@@ -1,0 +1,70 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  * {
+    @apply border-secondary-200;
+  }
+  body {
+    @apply bg-secondary-50 text-secondary-900 font-sans antialiased;
+  }
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+@layer utilities {
+  .text-gradient {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-primary-600 via-primary-500 to-accent-500;
+  }
+  
+  .text-gradient-light {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-white via-primary-100 to-accent-300;
+  }
+
+  .bg-gradient-primary {
+    @apply bg-gradient-to-br from-primary-900 via-primary-800 to-secondary-900;
+  }
+
+  .bg-gradient-subtle {
+    @apply bg-gradient-to-br from-secondary-50 via-white to-primary-50/30;
+  }
+  
+  .bg-gradient-dark {
+    @apply bg-gradient-to-br from-secondary-950 via-secondary-900 to-primary-950;
+  }
+
+  .glass {
+    @apply bg-white/70 backdrop-blur-md border border-white/20 shadow-glass;
+  }
+
+  .glass-dark {
+    @apply bg-secondary-900/60 backdrop-blur-lg border border-secondary-700/50 shadow-glass-dark;
+  }
+
+  .glass-card {
+    @apply bg-white/80 backdrop-blur-md border border-white/50 shadow-soft hover:shadow-glow hover:-translate-y-1 transition-all duration-300;
+  }
+  
+  .glass-card-dark {
+    @apply bg-secondary-800/40 backdrop-blur-xl border border-secondary-700/50 shadow-glass-dark hover:border-primary-500/50 hover:shadow-glow transition-all duration-300;
+  }
+
+  /* Custom scrollbar */
+  ::-webkit-scrollbar {
+    width: 8px;
+  }
+  ::-webkit-scrollbar-track {
+    @apply bg-secondary-100;
+  }
+  ::-webkit-scrollbar-thumb {
+    @apply bg-secondary-300 rounded-full hover:bg-secondary-400 transition-colors;
+  }
+
+  /* Skeleton loading animation */
+  .skeleton {
+    @apply animate-shimmer bg-gradient-to-r from-secondary-100 via-secondary-200 to-secondary-100;
+    background-size: 200% 100%;
+  }
+}

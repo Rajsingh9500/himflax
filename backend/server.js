@@ -1,0 +1,131 @@
+// backend/server.js
+const express = require('express');
+const helmet = require('helmet');
+const cors = require('cors');
+const morgan = require('morgan');
+const cookieParser = require('cookie-parser');
+const dotenv = require('dotenv');
+const connectDB = require('./config/db');
+const errorHandler = require('./middleware/errorHandler');
+
+// Load env vars
+dotenv.config();
+
+// Route imports
+const authRoutes = require('./routes/authRoutes');
+const jobRoutes = require('./routes/jobRoutes');
+const applicationRoutes = require('./routes/applicationRoutes');
+const contactRoutes = require('./routes/contactRoutes');
+const bannerRoutes = require('./routes/bannerRoutes');
+const occasionRoutes = require('./routes/occasionRoutes');
+
+/**
+ * Create and configure Express application
+ * @returns {express.Application}
+ */
+function createApp() {
+  const app = express();
+
+  // Security middleware
+  app.use(helmet());
+
+  // CORS configuration
+  const allowedOrigins = process.env.CORS_ORIGINS
+    ? process.env.CORS_ORIGINS.split(',').map((o) => o.trim())
+    : ['http://localhost:5173', 'http://localhost:5174'];
+
+  app.use(
+    cors({
+      origin: function (origin, callback) {
+        // Allow requests with no origin (mobile apps, curl, etc.)
+        if (!origin) return callback(null, true);
+        if (allowedOrigins.indexOf(origin) !== -1) {
+          return callback(null, true);
+        }
+        return callback(new Error('Not allowed by CORS'));
+      },
+      credentials: true,
+    })
+  );
+
+  // Body parsing
+  app.use(express.json({ limit: '10mb' }));
+  app.use(express.urlencoded({ extended: true }));
+  app.use(cookieParser());
+
+  // Request logging
+  if (process.env.NODE_ENV !== 'test') {
+    app.use(morgan(process.env.NODE_ENV === 'production' ? 'combined' : 'dev'));
+  }
+
+  // Static files — serve uploaded resumes
+  app.use('/uploads', express.static('uploads'));
+
+  // Health check
+  app.get('/api/v1/health', (_req, res) => {
+    res.json({ success: true, message: 'Himflax API is running', timestamp: new Date().toISOString() });
+  });
+
+  // API Routes
+  app.use('/api/v1/auth', authRoutes);
+  app.use('/api/v1/jobs', jobRoutes);
+  app.use('/api/v1/applications', applicationRoutes);
+  app.use('/api/v1/contact', contactRoutes);
+  app.use('/api/v1/banners', bannerRoutes);
+  app.use('/api/v1/occasions', occasionRoutes);
+
+  // 404 handler
+  app.use((_req, res) => {
+    res.status(404).json({ success: false, message: 'Route not found' });
+  });
+
+  // Global error handler — must be last
+  app.use(errorHandler);
+
+  return app;
+}
+
+/**
+ * Start the server
+ */
+async function startServer() {
+  try {
+    // Connect to MongoDB
+    await connectDB();
+
+    const app = createApp();
+    const PORT = process.env.PORT || 5000;
+
+    const server = app.listen(PORT, () => {
+      console.log(`\n🚀 Himflax API running on port ${PORT} in ${process.env.NODE_ENV || 'development'} mode\n`);
+    });
+
+    // Graceful shutdown
+    const shutdown = (signal) => {
+      console.log(`\n${signal} received. Shutting down gracefully...`);
+      server.close(() => {
+        console.log('HTTP server closed.');
+        process.exit(0);
+      });
+
+      // Force exit after 10s
+      setTimeout(() => {
+        console.error('Forced shutdown after timeout.');
+        process.exit(1);
+      }, 10000);
+    };
+
+    process.on('SIGTERM', () => shutdown('SIGTERM'));
+    process.on('SIGINT', () => shutdown('SIGINT'));
+  } catch (error) {
+    console.error('❌ Failed to start server:', error.message);
+    process.exit(1);
+  }
+}
+
+// Start if not imported for testing
+if (require.main === module) {
+  startServer();
+}
+
+module.exports = { createApp, startServer };
