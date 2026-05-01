@@ -48,7 +48,7 @@ function Login() {
             <span className="text-3xl font-bold text-white tracking-wider">H</span>
           </div>
           <h1 className="text-3xl font-bold text-white mb-2 tracking-tight">Welcome Back</h1>
-          <p className="text-secondary-400 font-medium">Sign in to NexaCore CMS</p>
+          <p className="text-secondary-400 font-medium">Sign in to Himflax CMS</p>
         </div>
 
         <div className="glass-dark rounded-[2.5rem] shadow-2xl p-8 sm:p-10 border border-white/10 backdrop-blur-xl">
