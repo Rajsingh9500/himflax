@@ -1,27 +1,18 @@
 // frontend/src/hooks/useOccasion.js
-import { useState, useEffect } from 'react';
+import { useQuery } from '@tanstack/react-query';
 import { fetchActiveOccasion } from '../api/occasions';
 
 export function useOccasion() {
-  const [occasion, setOccasion] = useState(null);
-  const [isLoading, setIsLoading] = useState(true);
-  const [error, setError] = useState(null);
+  const { data, isLoading, error } = useQuery({
+    queryKey: ['activeOccasion'],
+    queryFn: fetchActiveOccasion,
+    staleTime: 10 * 60 * 1000, // 10 minutes — occasions rarely change
+    retry: 1,
+  });
 
-  useEffect(() => {
-    const loadOccasion = async () => {
-      try {
-        setIsLoading(true);
-        const data = await fetchActiveOccasion();
-        setOccasion(data);
-      } catch (err) {
-        setError(err.message);
-      } finally {
-        setIsLoading(false);
-      }
-    };
-
-    loadOccasion();
-  }, []);
-
-  return { occasion, isLoading, error };
+  return {
+    occasion: data || null,
+    isLoading,
+    error: error?.message || null,
+  };
 }

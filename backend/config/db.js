@@ -8,11 +8,13 @@ const RETRY_INTERVAL = 5000; // 5 seconds
  */
 async function connectDB() {
   const uri = process.env.MONGO_URI || 'mongodb://localhost:27017/himflax';
+  const isProduction = process.env.NODE_ENV === 'production';
 
   const options = {
-    maxPoolSize: 10,
+    maxPoolSize: isProduction ? 5 : 10, // Lower for Render free tier
     serverSelectionTimeoutMS: 5000,
     socketTimeoutMS: 45000,
+    autoIndex: !isProduction, // Don't auto-create indexes in production
   };
 
   const connectWithRetry = async () => {

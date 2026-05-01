@@ -73,9 +73,12 @@ function HeroCarousel() {
             src={currentBanner.imageUrl}
             alt={currentBanner.title}
             className="w-full h-full object-cover"
+            loading={currentIndex === 0 ? 'eager' : 'lazy'}
+            fetchpriority={currentIndex === 0 ? 'high' : 'auto'}
+            decoding="async"
             initial={{ scale: 1 }}
-            animate={{ scale: 1.05 }}
-            transition={{ duration: 8, ease: "linear" }}
+            animate={{ scale: 1.03 }}
+            transition={{ duration: 10, ease: "linear" }}
           />
           <div className={`absolute inset-0 bg-gradient-to-r ${getOverlayClass(currentBanner.overlayTheme)}`} />
         </motion.div>
@@ -129,12 +132,14 @@ function HeroCarousel() {
             <button
               onClick={() => setCurrentIndex((prev) => (prev - 1 + banners.length) % banners.length)}
               className="p-3 rounded-full bg-black/20 hover:bg-black/40 backdrop-blur-md text-white border border-white/20 transition-all"
+              aria-label="Previous banner"
             >
               <HiChevronLeft className="w-6 h-6" />
             </button>
             <button
               onClick={() => setCurrentIndex((prev) => (prev + 1) % banners.length)}
               className="p-3 rounded-full bg-black/20 hover:bg-black/40 backdrop-blur-md text-white border border-white/20 transition-all"
+              aria-label="Next banner"
             >
               <HiChevronRight className="w-6 h-6" />
             </button>
@@ -147,6 +152,7 @@ function HeroCarousel() {
                 onClick={() => setCurrentIndex(idx)}
                 className="relative h-2 rounded-full overflow-hidden transition-all duration-300"
                 style={{ width: idx === currentIndex ? '40px' : '8px', backgroundColor: 'rgba(255,255,255,0.3)' }}
+                aria-label={`Go to banner ${idx + 1}`}
               >
                 {idx === currentIndex && (
                   <motion.div

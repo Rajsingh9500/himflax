@@ -1,27 +1,18 @@
 // frontend/src/hooks/useBanners.js
-import { useState, useEffect } from 'react';
+import { useQuery } from '@tanstack/react-query';
 import { fetchActiveBanners } from '../api/banners';
 
 export function useBanners() {
-  const [banners, setBanners] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
-  const [error, setError] = useState(null);
+  const { data, isLoading, error } = useQuery({
+    queryKey: ['banners'],
+    queryFn: fetchActiveBanners,
+    staleTime: 5 * 60 * 1000, // 5 minutes — banners don't change often
+    retry: 2,
+  });
 
-  useEffect(() => {
-    const loadBanners = async () => {
-      try {
-        setIsLoading(true);
-        const data = await fetchActiveBanners();
-        setBanners(data);
-      } catch (err) {
-        setError(err.message);
-      } finally {
-        setIsLoading(false);
-      }
-    };
-
-    loadBanners();
-  }, []);
-
-  return { banners, isLoading, error };
+  return {
+    banners: data || [],
+    isLoading,
+    error: error?.message || null,
+  };
 }

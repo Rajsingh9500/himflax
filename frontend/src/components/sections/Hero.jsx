@@ -1,8 +1,8 @@
 // frontend/src/components/sections/Hero.jsx
-import { memo, useRef, useEffect } from 'react';
+import { memo } from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import { HiArrowDown, HiArrowRight } from 'react-icons/hi';
+import { HiArrowRight } from 'react-icons/hi';
 import Button from '../ui/Button';
 
 const STATS = [
@@ -12,14 +12,6 @@ const STATS = [
 ];
 
 function Hero() {
-  const videoRef = useRef(null);
-
-  useEffect(() => {
-    if (videoRef.current) {
-      videoRef.current.playbackRate = 0.75;
-    }
-  }, []);
-
   const handleScroll = () => {
     const el = document.getElementById('services');
     if (el) el.scrollIntoView({ behavior: 'smooth' });
@@ -31,42 +23,45 @@ function Hero() {
       {/* ── Background Video ──────────────────────────────────────── */}
       <div className="absolute inset-0 z-0">
         <video
-          ref={videoRef}
           autoPlay
           muted
           loop
           playsInline
           preload="auto"
           className="absolute inset-0 w-full h-full object-cover"
+          style={{ transform: 'translateZ(0)' }}
         >
           <source
             src="https://assets.mixkit.co/videos/preview/mixkit-digital-animation-of-futuristic-devices-99786-large.mp4"
             type="video/mp4"
           />
-          <source
-            src="https://assets.mixkit.co/videos/preview/mixkit-aerial-view-of-city-traffic-at-night-11-large.mp4"
-            type="video/mp4"
-          />
         </video>
 
-        {/* Multi-layer overlay for depth and contrast */}
-        <div className="absolute inset-0 bg-secondary-950/70" />
-        <div className="absolute inset-0 bg-gradient-to-br from-secondary-950/60 via-primary-950/40 to-secondary-950/80" />
-        <div className="absolute inset-0 bg-gradient-to-t from-secondary-950 via-transparent to-secondary-950/30" />
+        {/* Multi-layer overlay for depth and contrast — GPU composited */}
+        <div className="absolute inset-0 bg-secondary-950/70" style={{ transform: 'translateZ(0)' }} />
+        <div className="absolute inset-0 bg-gradient-to-br from-secondary-950/60 via-primary-950/40 to-secondary-950/80" style={{ transform: 'translateZ(0)' }} />
+        <div className="absolute inset-0 bg-gradient-to-t from-secondary-950 via-transparent to-secondary-950/30" style={{ transform: 'translateZ(0)' }} />
 
-        {/* Noise texture for film grain feel */}
+        {/* Static noise texture — lightweight CSS pattern, no SVG filter */}
         <div
           className="absolute inset-0 opacity-[0.03] pointer-events-none"
           style={{
-            backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='1'/%3E%3C/svg%3E")`,
+            backgroundImage: `url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwBAMAAAClLOS0AAAAElBMVEUAAAAAAAAAAAAAAAAAAAAAAADgKxmiAAAABnRSTlMFCA0REhOEeEKOAAAASklEQVQ4y2MQhAKBBgYGFkEGBmFBBgYRQQYGIUEGBjFBBgZhQQYGCUEGBilBBgZpQQYGGUEGBllBBoZ/gwYNGjRo0KBBgwatsABYkQV0jJEhDAAAAABJRU5ErkJggg==")`,
             backgroundRepeat: 'repeat',
-            backgroundSize: '128px',
+            backgroundSize: '48px 48px',
+            transform: 'translateZ(0)',
           }}
         />
 
-        {/* Animated glow orbs */}
-        <div className="absolute top-1/4 right-1/4 w-[40vw] h-[40vw] rounded-full bg-primary-600/15 blur-[100px] animate-pulse" />
-        <div className="absolute bottom-0 left-1/4 w-[30vw] h-[30vw] rounded-full bg-accent-500/10 blur-[100px]" style={{ animation: 'pulse 8s ease-in-out infinite alternate' }} />
+        {/* Glow orbs — GPU composited with will-change */}
+        <div
+          className="absolute top-1/4 right-1/4 w-[40vw] h-[40vw] rounded-full bg-primary-600/15 blur-[80px]"
+          style={{ willChange: 'transform', animation: 'pulse 6s ease-in-out infinite', transform: 'translateZ(0)' }}
+        />
+        <div
+          className="absolute bottom-0 left-1/4 w-[30vw] h-[30vw] rounded-full bg-accent-500/10 blur-[80px]"
+          style={{ willChange: 'transform', animation: 'pulse 8s ease-in-out infinite alternate', transform: 'translateZ(0)' }}
+        />
 
         {/* Dot grid overlay */}
         <div
@@ -74,6 +69,7 @@ function Hero() {
           style={{
             backgroundImage: 'radial-gradient(circle at 1px 1px, rgba(255,255,255,0.8) 1px, transparent 0)',
             backgroundSize: '32px 32px',
+            transform: 'translateZ(0)',
           }}
         />
       </div>

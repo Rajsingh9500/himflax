@@ -4,7 +4,8 @@ const { validationResult } = require('express-validator');
 const User = require('../models/User');
 
 /**
- * Generate JWT token and set httpOnly cookie
+ * Generate JWT token, set httpOnly cookie, AND return token in body
+ * Cookie works for same-domain (dev), Bearer token works for cross-domain (prod)
  */
 function sendTokenResponse(user, statusCode, res, message) {
   const token = jwt.sign(
@@ -13,10 +14,12 @@ function sendTokenResponse(user, statusCode, res, message) {
     { expiresIn: process.env.JWT_EXPIRE || '7d' }
   );
 
+  const isProduction = process.env.NODE_ENV === 'production';
+
   const cookieOptions = {
     httpOnly: true,
-    secure: process.env.NODE_ENV === 'production',
-    sameSite: process.env.NODE_ENV === 'production' ? 'strict' : 'lax',
+    secure: isProduction,
+    sameSite: isProduction ? 'none' : 'lax',
     maxAge: 7 * 24 * 60 * 60 * 1000, // 7 days
     path: '/',
   };
@@ -27,6 +30,7 @@ function sendTokenResponse(user, statusCode, res, message) {
     .json({
       success: true,
       message,
+      token, // Also send in body for cross-domain usage
       data: {
         id: user._id,
         email: user.email,

@@ -16,12 +16,20 @@ export default defineConfig({
   build: {
     outDir: 'dist',
     sourcemap: false,
-    minify: true,
+    minify: 'terser',
+    chunkSizeWarningLimit: 600,
+    terserOptions: {
+      compress: {
+        drop_console: true,
+        drop_debugger: true,
+      },
+    },
     rollupOptions: {
       output: {
         manualChunks: {
           'vendor-react': ['react', 'react-dom', 'react-router-dom'],
-          'vendor-ui': ['framer-motion', 'react-icons', 'lucide-react'],
+          'vendor-ui': ['framer-motion', 'react-icons'],
+          'vendor-query': ['@tanstack/react-query', 'axios'],
         },
       },
     },

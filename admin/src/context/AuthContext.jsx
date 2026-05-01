@@ -10,9 +10,17 @@ export function AuthProvider({ children }) {
 
   const checkAuth = useCallback(async () => {
     try {
+      // Only attempt auth check if we have a stored token
+      const token = localStorage.getItem('himflax_token');
+      if (!token) {
+        setUser(null);
+        setLoading(false);
+        return;
+      }
       const res = await getMeApi();
       setUser(res.data);
     } catch {
+      localStorage.removeItem('himflax_token');
       setUser(null);
     } finally {
       setLoading(false);
@@ -23,12 +31,17 @@ export function AuthProvider({ children }) {
 
   const login = async (credentials) => {
     const res = await loginApi(credentials);
+    // Store token from response body for cross-domain auth
+    if (res.token) {
+      localStorage.setItem('himflax_token', res.token);
+    }
     setUser(res.data);
     return res;
   };
 
   const logout = async () => {
     await logoutApi();
+    localStorage.removeItem('himflax_token');
     setUser(null);
   };
 

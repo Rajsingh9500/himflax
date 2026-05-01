@@ -4,11 +4,21 @@ const User = require('../models/User');
 
 /**
  * JWT authentication middleware
- * Reads token from httpOnly cookie, verifies it, and attaches user to request
+ * Reads token from:
+ *   1. httpOnly cookie (same-domain / dev)
+ *   2. Authorization: Bearer <token> header (cross-domain / production)
  */
 async function verifyToken(req, res, next) {
   try {
-    const token = req.cookies?.token;
+    // Try cookie first, then Authorization header
+    let token = req.cookies?.token;
+
+    if (!token) {
+      const authHeader = req.headers.authorization;
+      if (authHeader && authHeader.startsWith('Bearer ')) {
+        token = authHeader.split(' ')[1];
+      }
+    }
 
     if (!token) {
       return res.status(401).json({

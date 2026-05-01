@@ -4,6 +4,19 @@ const Contact = require('../models/Contact');
 const { sendEmail } = require('../config/email');
 
 /**
+ * Escape HTML entities to prevent XSS in email templates
+ */
+function escapeHtml(str) {
+  if (!str) return '';
+  return String(str)
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#039;');
+}
+
+/**
  * @desc    Submit contact form
  * @route   POST /api/v1/contact
  * @access  Public
@@ -24,21 +37,28 @@ async function submitContact(req, res, next) {
     // Save to database
     const contact = await Contact.create({ name, email, phone, service, message });
 
+    // Escape user inputs for email templates (XSS prevention)
+    const safeName = escapeHtml(name);
+    const safeEmail = escapeHtml(email);
+    const safePhone = escapeHtml(phone);
+    const safeService = escapeHtml(service);
+    const safeMessage = escapeHtml(message);
+
     // Send notification email to admin (non-blocking)
     sendEmail({
       to: process.env.SMTP_USER || 'admin@himflax.com',
-      subject: `New Contact Inquiry — ${service}`,
+      subject: `New Contact Inquiry — ${safeService}`,
       html: `
         <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
           <h2 style="color: #1D4ED8;">New Contact Form Submission</h2>
           <table style="width: 100%; border-collapse: collapse;">
-            <tr><td style="padding: 8px; font-weight: bold;">Name:</td><td style="padding: 8px;">${name}</td></tr>
-            <tr><td style="padding: 8px; font-weight: bold;">Email:</td><td style="padding: 8px;">${email}</td></tr>
-            <tr><td style="padding: 8px; font-weight: bold;">Phone:</td><td style="padding: 8px;">${phone || 'N/A'}</td></tr>
-            <tr><td style="padding: 8px; font-weight: bold;">Service:</td><td style="padding: 8px;">${service}</td></tr>
+            <tr><td style="padding: 8px; font-weight: bold;">Name:</td><td style="padding: 8px;">${safeName}</td></tr>
+            <tr><td style="padding: 8px; font-weight: bold;">Email:</td><td style="padding: 8px;">${safeEmail}</td></tr>
+            <tr><td style="padding: 8px; font-weight: bold;">Phone:</td><td style="padding: 8px;">${safePhone || 'N/A'}</td></tr>
+            <tr><td style="padding: 8px; font-weight: bold;">Service:</td><td style="padding: 8px;">${safeService}</td></tr>
           </table>
           <h3>Message:</h3>
-          <p style="background: #f1f5f9; padding: 16px; border-radius: 8px;">${message}</p>
+          <p style="background: #f1f5f9; padding: 16px; border-radius: 8px;">${safeMessage}</p>
         </div>
       `,
     }).catch(() => {});
@@ -49,8 +69,8 @@ async function submitContact(req, res, next) {
       subject: 'Thank you for contacting Himflax IT',
       html: `
         <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
-          <h2 style="color: #1D4ED8;">Thank You, ${name}!</h2>
-          <p>We have received your inquiry about <strong>${service}</strong>.</p>
+          <h2 style="color: #1D4ED8;">Thank You, ${safeName}!</h2>
+          <p>We have received your inquiry about <strong>${safeService}</strong>.</p>
           <p>Our team will review your message and get back to you within 24 hours.</p>
           <br />
           <p>Best regards,</p>

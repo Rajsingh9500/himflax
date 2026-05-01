@@ -4,6 +4,8 @@ const helmet = require('helmet');
 const cors = require('cors');
 const morgan = require('morgan');
 const cookieParser = require('cookie-parser');
+const compression = require('compression');
+const mongoSanitize = require('express-mongo-sanitize');
 const dotenv = require('dotenv');
 const connectDB = require('./config/db');
 const errorHandler = require('./middleware/errorHandler');
@@ -26,8 +28,14 @@ const occasionRoutes = require('./routes/occasionRoutes');
 function createApp() {
   const app = express();
 
+  // Trust proxy (required behind Render/Vercel reverse proxies)
+  app.set('trust proxy', 1);
+
   // Security middleware
   app.use(helmet());
+
+  // Compression — gzip all responses (~70% smaller)
+  app.use(compression());
 
   // CORS configuration
   const allowedOrigins = process.env.CORS_ORIGINS
@@ -37,7 +45,7 @@ function createApp() {
   app.use(
     cors({
       origin: function (origin, callback) {
-        // Allow requests with no origin (mobile apps, curl, etc.)
+        // Allow requests with no origin (mobile apps, curl, Render health checks)
         if (!origin) return callback(null, true);
         if (allowedOrigins.indexOf(origin) !== -1) {
           return callback(null, true);
@@ -53,6 +61,9 @@ function createApp() {
   app.use(express.urlencoded({ extended: true }));
   app.use(cookieParser());
 
+  // Sanitize MongoDB queries — prevent NoSQL injection ($gt, $ne, etc.)
+  app.use(mongoSanitize());
+
   // Request logging
   if (process.env.NODE_ENV !== 'test') {
     app.use(morgan(process.env.NODE_ENV === 'production' ? 'combined' : 'dev'));
@@ -61,9 +72,14 @@ function createApp() {
   // Static files — serve uploaded resumes
   app.use('/uploads', express.static('uploads'));
 
-  // Health check
+  // Health check (also used as keep-alive ping for Render cold starts)
   app.get('/api/v1/health', (_req, res) => {
-    res.json({ success: true, message: 'Himflax API is running', timestamp: new Date().toISOString() });
+    res.json({
+      success: true,
+      message: 'Himflax API is running',
+      timestamp: new Date().toISOString(),
+      uptime: Math.floor(process.uptime()),
+    });
   });
 
   // API Routes
