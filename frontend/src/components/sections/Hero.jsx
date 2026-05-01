@@ -18,28 +18,14 @@ function Hero() {
   };
 
   return (
-    <section className="relative min-h-[100vh] flex items-center overflow-hidden text-white">
+    <section className="relative min-h-[100vh] flex items-center overflow-hidden text-white bg-secondary-950">
 
       {/* ── Background Video ──────────────────────────────────────── */}
       <div className="absolute inset-0 z-0">
-        <video
-          autoPlay
-          muted
-          loop
-          playsInline
-          preload="auto"
-          className="absolute inset-0 w-full h-full object-cover"
-          style={{ transform: 'translateZ(0)' }}
-        >
-          <source
-            src="https://assets.mixkit.co/videos/preview/mixkit-digital-animation-of-futuristic-devices-99786-large.mp4"
-            type="video/mp4"
-          />
-        </video>
 
-        {/* Multi-layer overlay for depth and contrast — GPU composited */}
-        <div className="absolute inset-0 bg-secondary-950/70" style={{ transform: 'translateZ(0)' }} />
-        <div className="absolute inset-0 bg-gradient-to-br from-secondary-950/60 via-primary-950/40 to-secondary-950/80" style={{ transform: 'translateZ(0)' }} />
+
+        {/* Multi-layer gradient overlay for depth and contrast */}
+        <div className="absolute inset-0 bg-gradient-to-br from-secondary-900 via-primary-950/40 to-secondary-950" style={{ transform: 'translateZ(0)' }} />
         <div className="absolute inset-0 bg-gradient-to-t from-secondary-950 via-transparent to-secondary-950/30" style={{ transform: 'translateZ(0)' }} />
 
         {/* Static noise texture — lightweight CSS pattern, no SVG filter */}
