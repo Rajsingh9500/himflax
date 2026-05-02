@@ -43,7 +43,7 @@ function Applications() {
     { header: 'Job Applied', render: (r) => r.jobId?.title || 'N/A' },
     { header: 'Date', render: (r) => new Date(r.appliedAt).toLocaleDateString() },
     { header: 'Status', render: (r) => (
-      <select value={r.status} onChange={(e) => statusMutation.mutate({ id: r._id, status: e.target.value })} className={`px-3 py-1.5 rounded-xl text-xs font-bold border border-transparent cursor-pointer transition-all focus:ring-2 focus:ring-primary-500/20 ${statusColors[r.status] || ''}`}>
+      <select aria-label="Update Application Status" value={r.status} onChange={(e) => statusMutation.mutate({ id: r._id, status: e.target.value })} className={`px-3 py-1.5 rounded-xl text-xs font-bold border border-transparent cursor-pointer transition-all focus:ring-2 focus:ring-primary-500/20 ${statusColors[r.status] || ''}`}>
         {['pending', 'reviewing', 'shortlisted', 'rejected'].map((s) => <option key={s} value={s}>{s.charAt(0).toUpperCase() + s.slice(1)}</option>)}
       </select>
     )},
@@ -57,11 +57,11 @@ function Applications() {
   return (
     <div className="space-y-5">
       <div className="flex flex-wrap gap-3">
-        <select value={filterJob} onChange={(e) => { setFilterJob(e.target.value); setPage(1); }} className="px-4 py-2.5 rounded-xl border border-secondary-200 text-sm focus:outline-none focus:ring-2 focus:ring-primary-500/20 focus:border-primary-500">
+        <select aria-label="Filter by Job" value={filterJob} onChange={(e) => { setFilterJob(e.target.value); setPage(1); }} className="px-4 py-2.5 rounded-xl border border-secondary-200 text-sm focus:outline-none focus:ring-2 focus:ring-primary-500/20 focus:border-primary-500">
           <option value="">All Jobs</option>
           {allJobs.map((j) => <option key={j._id} value={j._id}>{j.title}</option>)}
         </select>
-        <select value={filterStatus} onChange={(e) => { setFilterStatus(e.target.value); setPage(1); }} className="px-4 py-2.5 rounded-xl border border-secondary-200 text-sm focus:outline-none focus:ring-2 focus:ring-primary-500/20 focus:border-primary-500">
+        <select aria-label="Filter by Status" value={filterStatus} onChange={(e) => { setFilterStatus(e.target.value); setPage(1); }} className="px-4 py-2.5 rounded-xl border border-secondary-200 text-sm focus:outline-none focus:ring-2 focus:ring-primary-500/20 focus:border-primary-500">
           <option value="">All Statuses</option>
           {['pending', 'reviewing', 'shortlisted', 'rejected'].map((s) => <option key={s} value={s}>{s.charAt(0).toUpperCase() + s.slice(1)}</option>)}
         </select>

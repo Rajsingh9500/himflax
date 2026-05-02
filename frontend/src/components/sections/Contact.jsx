@@ -82,8 +82,8 @@ function Contact() {
                     <input {...register('phone')} placeholder="+91 XXXXX XXXXX" className={inputClass} />
                   </div>
                   <div>
-                    <label className="block text-sm font-bold text-secondary-900 mb-2">Service *</label>
-                    <select {...register('service')} className={inputClass}>
+                    <label htmlFor="service" className="block text-sm font-bold text-secondary-900 mb-2">Service *</label>
+                    <select id="service" {...register('service')} className={inputClass}>
                       <option value="">Select a service</option>
                       {services.map((s) => (<option key={s} value={s}>{s}</option>))}
                     </select>

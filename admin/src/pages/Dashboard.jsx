@@ -90,7 +90,7 @@ function Dashboard() {
             <h3 className="text-xl font-bold text-secondary-900">Application Trends</h3>
             <p className="text-sm font-medium text-secondary-500">Number of applications received over the last 6 months</p>
           </div>
-          <select className="px-4 py-2 bg-secondary-50 border border-secondary-200 rounded-xl text-sm font-bold text-secondary-700 focus:outline-none focus:border-primary-500">
+          <select aria-label="Select Date Range" className="px-4 py-2 bg-secondary-50 border border-secondary-200 rounded-xl text-sm font-bold text-secondary-700 focus:outline-none focus:border-primary-500">
             <option>Last 6 Months</option>
             <option>This Year</option>
           </select>

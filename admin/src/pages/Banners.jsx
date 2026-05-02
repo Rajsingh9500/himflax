@@ -401,8 +401,8 @@ export default function Banners() {
                     </div>
 
                     <div>
-                      <label className="block text-sm font-bold text-secondary-700 mb-1">Overlay Theme</label>
-                      <select {...register('overlayTheme')} className="w-full px-4 py-2 border border-secondary-200 rounded-xl focus:ring-2 focus:ring-primary-500 outline-none bg-white">
+                      <label htmlFor="overlayTheme" className="block text-sm font-bold text-secondary-700 mb-1">Overlay Theme</label>
+                      <select id="overlayTheme" {...register('overlayTheme')} className="w-full px-4 py-2 border border-secondary-200 rounded-xl focus:ring-2 focus:ring-primary-500 outline-none bg-white">
                         <option value="dark">Dark</option>
                         <option value="blue">Blue</option>
                         <option value="purple">Purple</option>

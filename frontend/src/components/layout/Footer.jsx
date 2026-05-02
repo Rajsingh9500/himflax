@@ -97,7 +97,7 @@ function Footer() {
               {services.map((service) => (
                 <li key={service} className="flex items-center gap-2 group">
                   <span className="w-1.5 h-1.5 rounded-full bg-primary-500" />
-                  <Link to="/services" className="text-sm text-secondary-400 group-hover:text-primary-400 transition-colors">
+                  <Link to="/services" className="text-sm text-secondary-300 group-hover:text-primary-400 transition-colors">
                     {service}
                   </Link>
                 </li>
@@ -112,7 +112,7 @@ function Footer() {
               {industries.map((industry) => (
                 <li key={industry} className="flex items-center gap-2 group">
                   <span className="w-1.5 h-1.5 rounded-full bg-primary-500" />
-                  <Link to="/industries" className="text-sm text-secondary-400 group-hover:text-primary-400 transition-colors">
+                  <Link to="/industries" className="text-sm text-secondary-300 group-hover:text-primary-400 transition-colors">
                     {industry}
                   </Link>
                 </li>
@@ -127,7 +127,7 @@ function Footer() {
               {quickLinks.map((link) => (
                 <li key={link.name} className="flex items-center gap-2 group">
                   <span className="w-1.5 h-1.5 rounded-full bg-primary-500" />
-                  <Link to={link.href} className="text-sm text-secondary-400 group-hover:text-primary-400 transition-colors">
+                  <Link to={link.href} className="text-sm text-secondary-300 group-hover:text-primary-400 transition-colors">
                     {link.name}
                   </Link>
                 </li>
@@ -159,7 +159,7 @@ function Footer() {
             </Link>
           </div>
 
-          <p className="text-sm text-secondary-500 font-medium">
+          <p className="text-sm text-secondary-400 font-medium">
             © {currentYear - 8} - {currentYear}  All Rights Reserved. Himflax Information Technologies Pvt. Ltd.
           </p>
 
@@ -169,7 +169,7 @@ function Footer() {
                 key={label}
                 href={href}
                 aria-label={label}
-                className="w-8 h-8 rounded-full bg-secondary-900 flex items-center justify-center text-secondary-400 hover:bg-primary-600 hover:text-white transition-all duration-300"
+                className="w-11 h-11 p-2 rounded-full bg-secondary-900 flex items-center justify-center text-secondary-300 hover:bg-primary-600 hover:text-white transition-all duration-300"
               >
                 <Icon className="w-3.5 h-3.5" />
               </a>

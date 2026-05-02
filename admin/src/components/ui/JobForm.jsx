@@ -71,8 +71,8 @@ export default function JobForm({ initialData = null, onSubmit, loading, onCance
           {errors.location && <p className="text-red-500 text-xs mt-1.5 font-bold">{errors.location.message}</p>}
         </div>
         <div>
-          <label className="block text-sm font-bold text-secondary-900 mb-2 uppercase tracking-wide">Job Type *</label>
-          <select {...register('type')} className={inputClass}>
+          <label htmlFor="type" className="block text-sm font-bold text-secondary-900 mb-2 uppercase tracking-wide">Job Type *</label>
+          <select id="type" {...register('type')} className={inputClass}>
             <option value="Full-time">Full-time</option>
             <option value="Part-time">Part-time</option>
             <option value="Contract">Contract</option>
