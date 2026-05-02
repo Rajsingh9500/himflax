@@ -20,6 +20,7 @@ const applicationRoutes = require('./routes/applicationRoutes');
 const contactRoutes = require('./routes/contactRoutes');
 const bannerRoutes = require('./routes/bannerRoutes');
 const occasionRoutes = require('./routes/occasionRoutes');
+const uploadRoutes = require('./routes/uploadRoutes');
 
 /**
  * Create and configure Express application
@@ -89,6 +90,7 @@ function createApp() {
   app.use('/api/v1/contact', contactRoutes);
   app.use('/api/v1/banners', bannerRoutes);
   app.use('/api/v1/occasions', occasionRoutes);
+  app.use('/api/v1/upload', uploadRoutes);
 
   // 404 handler
   app.use((_req, res) => {
