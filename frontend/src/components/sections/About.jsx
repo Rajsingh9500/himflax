@@ -65,7 +65,7 @@ function About() {
             <div className="absolute inset-0 bg-gradient-to-tr from-primary-400 to-accent-300 rounded-[3rem] blur-2xl opacity-20 animate-pulse" />
             
             <div className="relative rounded-[3rem] overflow-hidden bg-secondary-900 aspect-[4/3] border border-secondary-800 shadow-2xl p-1">
-              <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&q=80')] bg-cover bg-center opacity-40 mix-blend-overlay" />
+              <div className="absolute inset-0 bg-[url('/images/about/team-collab.jpg')] bg-cover bg-center opacity-40 mix-blend-overlay" />
               
               <div className="absolute inset-0 flex items-center justify-center p-8">
                 <div className="glass-dark rounded-3xl p-10 text-center max-w-sm w-full border-t-white/10 border-l-white/10 relative overflow-hidden">

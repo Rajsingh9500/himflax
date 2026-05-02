@@ -8,12 +8,12 @@ import { HiExternalLink } from 'react-icons/hi';
 const categories = ['All', 'Web', 'Mobile', 'Cloud', 'Marketing'];
 
 const projects = [
-  { title: 'FinVault Banking Platform', category: 'Web', description: 'A secure digital banking platform with real-time transactions and AI fraud detection.', tags: ['React', 'Node.js', 'PostgreSQL'], color: 'from-blue-500 to-indigo-600', img: 'https://images.unsplash.com/photo-1563013544-824ae1b704d3?auto=format&fit=crop&q=80&w=800' },
-  { title: 'MedTrack Health App', category: 'Mobile', description: 'Cross-platform health tracking app with telemedicine and wearable integrations.', tags: ['React Native', 'Firebase', 'HealthKit'], color: 'from-green-500 to-emerald-600', img: 'https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&q=80&w=800' },
-  { title: 'ShopSphere E-Commerce', category: 'Web', description: 'High-performance e-commerce platform handling 100K+ daily orders.', tags: ['Next.js', 'Stripe', 'MongoDB'], color: 'from-purple-500 to-fuchsia-600', img: 'https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?auto=format&fit=crop&q=80&w=800' },
-  { title: 'CloudOps Infrastructure', category: 'Cloud', description: 'AWS multi-region deployment with auto-scaling, CI/CD, and 99.99% uptime.', tags: ['AWS', 'Terraform', 'Kubernetes'], color: 'from-cyan-500 to-blue-600', img: 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&q=80&w=800' },
-  { title: 'GrowthPulse SEO Suite', category: 'Marketing', description: 'Digital marketing analytics dashboard with SEO audit and campaign tracking.', tags: ['Python', 'React', 'BigQuery'], color: 'from-orange-500 to-red-600', img: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=800' },
-  { title: 'EduLearn Platform', category: 'Web', description: 'Online learning management system with live classes and AI-powered assessments.', tags: ['Vue.js', 'Django', 'WebRTC'], color: 'from-rose-500 to-pink-600', img: 'https://images.unsplash.com/photo-1501504905252-473c47e087f8?auto=format&fit=crop&q=80&w=800' },
+  { title: 'FinVault Banking Platform', category: 'Web', description: 'A secure digital banking platform with real-time transactions and AI fraud detection.', tags: ['React', 'Node.js', 'PostgreSQL'], color: 'from-blue-500 to-indigo-600', img: '/images/portfolio/finvault.jpg' },
+  { title: 'MedTrack Health App', category: 'Mobile', description: 'Cross-platform health tracking app with telemedicine and wearable integrations.', tags: ['React Native', 'Firebase', 'HealthKit'], color: 'from-green-500 to-emerald-600', img: '/images/portfolio/medtrack.jpg' },
+  { title: 'ShopSphere E-Commerce', category: 'Web', description: 'High-performance e-commerce platform handling 100K+ daily orders.', tags: ['Next.js', 'Stripe', 'MongoDB'], color: 'from-purple-500 to-fuchsia-600', img: '/images/portfolio/shopsphere.jpg' },
+  { title: 'CloudOps Infrastructure', category: 'Cloud', description: 'AWS multi-region deployment with auto-scaling, CI/CD, and 99.99% uptime.', tags: ['AWS', 'Terraform', 'Kubernetes'], color: 'from-cyan-500 to-blue-600', img: '/images/portfolio/cloudops.jpg' },
+  { title: 'GrowthPulse SEO Suite', category: 'Marketing', description: 'Digital marketing analytics dashboard with SEO audit and campaign tracking.', tags: ['Python', 'React', 'BigQuery'], color: 'from-orange-500 to-red-600', img: '/images/portfolio/growthpulse.jpg' },
+  { title: 'EduLearn Platform', category: 'Web', description: 'Online learning management system with live classes and AI-powered assessments.', tags: ['Vue.js', 'Django', 'WebRTC'], color: 'from-rose-500 to-pink-600', img: '/images/portfolio/edulearn.jpg' },
 ];
 
 function Portfolio() {

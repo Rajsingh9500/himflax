@@ -10,7 +10,7 @@ const industries = [
     title: 'Healthcare',
     description: 'Empowering medical providers with secure telemedicine platforms and patient management systems.',
     icon: HiOutlineHeart,
-    image: 'https://images.unsplash.com/photo-1576091160550-2173dba999ef?auto=format&fit=crop&q=80&w=800',
+    image: '/images/industries/healthcare.jpg',
     color: 'bg-rose-500'
   },
   {
@@ -18,7 +18,7 @@ const industries = [
     title: 'Finance & Fintech',
     description: 'Building secure, scalable banking solutions and transaction systems with industry-leading security.',
     icon: HiOutlineBanknotes,
-    image: 'https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&q=80&w=800',
+    image: '/images/industries/technology.jpg',
     color: 'bg-blue-600'
   },
   {
@@ -26,7 +26,7 @@ const industries = [
     title: 'E-commerce',
     description: 'Creating high-conversion retail platforms and seamless shopping experiences for global brands.',
     icon: HiOutlineShoppingBag,
-    image: 'https://images.unsplash.com/photo-1557821552-17105176677c?auto=format&fit=crop&q=80&w=800',
+    image: '/images/industries/ecommerce.jpg',
     color: 'bg-amber-500'
   },
   {
@@ -34,7 +34,7 @@ const industries = [
     title: 'Education',
     description: 'Transforming learning with interactive LMS platforms and digital classroom solutions.',
     icon: HiOutlineAcademicCap,
-    image: 'https://images.unsplash.com/photo-1501504905252-473c47e087f8?auto=format&fit=crop&q=80&w=800',
+    image: '/images/industries/education.jpg',
     color: 'bg-emerald-600'
   },
   {
@@ -42,7 +42,7 @@ const industries = [
     title: 'Real Estate',
     description: 'Streamlining property management and virtual tours with advanced digital real estate tools.',
     icon: HiOutlineHome,
-    image: 'https://images.unsplash.com/photo-1560518883-ce09059eeffa?auto=format&fit=crop&q=80&w=800',
+    image: '/images/industries/realestate.jpg',
     color: 'bg-indigo-600'
   },
   {
@@ -50,7 +50,7 @@ const industries = [
     title: 'Logistics',
     description: 'Optimizing supply chains and fleet management with real-time tracking and AI analytics.',
     icon: HiOutlineTruck,
-    image: 'https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&q=80&w=800',
+    image: '/images/industries/logistics.jpg',
     color: 'bg-secondary-700'
   }
 ];
@@ -62,7 +62,7 @@ export default function Industries() {
       <section className="relative min-h-[50vh] flex items-center justify-center overflow-hidden bg-secondary-950 pt-24 pb-20">
         <div className="absolute inset-0 z-0">
           <OptimizedImage 
-            src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&q=80&w=1600" 
+            src="/images/industries/hero.jpg" 
             alt="Industries" 
             className="w-full h-full object-cover opacity-20 scale-110 blur-[2px]"
             priority={true}

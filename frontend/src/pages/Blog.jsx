@@ -8,7 +8,7 @@ const blogs = [
     excerpt: 'Clicks to Conversion Rate: A website\'s success isn\'t just measured by the number of visitors it attracts but by how many of those visitors convert...',
     author: 'Himflax Group',
     date: 'May 15, 2024',
-    image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=800',
+    image: '/images/blog/digital-transform.jpg',
     category: 'SEO'
   },
   {
@@ -16,7 +16,7 @@ const blogs = [
     excerpt: 'Welcome to the realm of Search Engine Optimization (SEO) update 2024, where understanding Google\'s algorithm updates is like unlocking the secret to digital success...',
     author: 'Himflax Group',
     date: 'April 24, 2024',
-    image: 'https://images.unsplash.com/photo-1571721795195-a2ca2d3370a9?auto=format&fit=crop&q=80&w=800',
+    image: '/images/blog/cybersecurity.jpg',
     category: 'Optimization'
   },
   {
@@ -24,7 +24,7 @@ const blogs = [
     excerpt: 'Search Engine Optimization (SEO) stands out as an important part of businesses aiming to grow and do well online. Especially in the United Kingdom, where...',
     author: 'Himflax Group',
     date: 'April 15, 2024',
-    image: 'https://images.unsplash.com/photo-1557804506-669a67965ba0?auto=format&fit=crop&q=80&w=800',
+    image: '/images/blog/cloud-migration.jpg',
     category: 'Marketing'
   },
   {
@@ -32,7 +32,7 @@ const blogs = [
     excerpt: 'SEO Consulting Services & SEO Consultants in the digital world, where every click counts and visibility rules are most powerful, businesses are turning to SEO...',
     author: 'Himflax Group',
     date: 'April 4, 2024',
-    image: 'https://images.unsplash.com/photo-1542744173-8e7e53415bb0?auto=format&fit=crop&q=80&w=800',
+    image: '/images/blog/agile.jpg',
     category: 'Consulting'
   },
   {
@@ -40,7 +40,7 @@ const blogs = [
     excerpt: '12 Simple Reasons Why Your Business Needs Top SEO Services in the USA. In today\'s digital world, it\'s super important for your business to be...',
     author: 'Himflax Group',
     date: 'February 26, 2024',
-    image: 'https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&q=80&w=800',
+    image: '/images/blog/ai-business.jpg',
     category: 'Business'
   },
   {
@@ -48,7 +48,7 @@ const blogs = [
     excerpt: 'Enhance Your Business: The 5 Best Digital Marketing Services in the USA. In today\'s digital world, getting your brand noticed is...',
     author: 'Himflax Group',
     date: 'January 31, 2024',
-    image: 'https://images.unsplash.com/photo-1432888622747-4eb9a8f2c20a?auto=format&fit=crop&q=80&w=800',
+    image: '/images/blog/mobile-first.jpg',
     category: 'Marketing'
   }
 ];
@@ -60,7 +60,7 @@ export default function Blog() {
       <section className="relative min-h-[50vh] flex items-center justify-center overflow-hidden bg-secondary-950 pt-24 pb-20">
         <div className="absolute inset-0 z-0">
           <OptimizedImage 
-            src="https://images.unsplash.com/photo-1499750310107-5fef28a66643?auto=format&fit=crop&q=80&w=1600" 
+            src="/images/blog/blog-hero.jpg" 
             alt="Himflax Blog" 
             className="w-full h-full object-cover opacity-20 scale-110 blur-[2px]"
             priority={true}

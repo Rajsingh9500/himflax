@@ -76,7 +76,7 @@ export default function Services() {
       <section className="relative min-h-[50vh] flex items-center justify-center overflow-hidden bg-secondary-950 pt-24 pb-20">
         <div className="absolute inset-0 z-0">
           <OptimizedImage 
-            src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=1200" 
+            src="/images/pages/services-hero.jpg" 
             alt="Services" 
             className="w-full h-full object-cover opacity-20 scale-110 blur-[2px]"
             priority={true}

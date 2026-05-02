@@ -23,12 +23,12 @@ const values = [
 ];
 
 const team = [
-  { name: 'Vipin Singh', role: 'Founder & CEO', image: 'https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&q=80&w=400&h=400' },
-  { name: 'Mansi Singh', role: 'COO', image: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=400&h=400' },
-  { name: 'Ankur Kang', role: 'CTO', image: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&q=80&w=400&h=400' },
-  { name: 'Sudeep Jha', role: 'Sales Manager', image: 'https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&q=80&w=400&h=400' },
-  { name: 'Sandeep Kumar', role: 'Technical Lead', image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=400&h=400' },
-  { name: 'Harshit Kapoor', role: 'Project Manager', image: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&q=80&w=400&h=400' },
+  { name: 'Vipin Singh', role: 'Founder & CEO', image: '/images/about/vipin.jpg' },
+  { name: 'Mansi Singh', role: 'COO', image: '/images/about/mansi.jpg' },
+  { name: 'Ankur Kang', role: 'CTO', image: '/images/about/ankur.jpg' },
+  { name: 'Sudeep Jha', role: 'Sales Manager', image: '/images/about/sudeep.jpg' },
+  { name: 'Sandeep Kumar', role: 'Technical Lead', image: '/images/about/sandeep.jpg' },
+  { name: 'Harshit Kapoor', role: 'Project Manager', image: '/images/about/harshit.jpg' },
 ];
 
 export default function About() {
@@ -38,7 +38,7 @@ export default function About() {
       <section className="relative min-h-[50vh] flex items-center justify-center overflow-hidden bg-secondary-950 pt-24 pb-20">
         <div className="absolute inset-0 z-0">
           <OptimizedImage 
-            src="https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&q=80&w=1600" 
+            src="/images/about/office-hero.jpg" 
             alt="About Himflax" 
             className="w-full h-full object-cover opacity-20 scale-110 blur-[2px]"
             priority={true}
@@ -105,7 +105,7 @@ export default function About() {
               className="relative rounded-[3rem] overflow-hidden shadow-2xl border border-secondary-100 aspect-video"
             >
               <OptimizedImage 
-                src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&q=80&w=800" 
+                src="/images/about/team-collab.jpg" 
                 alt="Team working"
                 className="w-full h-full object-cover"
               />
@@ -173,7 +173,7 @@ export default function About() {
                  className="aspect-[4/3] rounded-[3.5rem] overflow-hidden border border-white/20 shadow-2xl"
                >
                   <OptimizedImage 
-                    src="https://images.unsplash.com/photo-1533750349088-cd871a92f312?auto=format&fit=crop&q=80&w=800" 
+                    src="/images/about/workspace.jpg" 
                     alt="Target"
                     className="w-full h-full object-cover"
                   />

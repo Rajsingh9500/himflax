@@ -43,7 +43,7 @@ export default function Contact() {
       <section className="relative min-h-[50vh] flex items-center justify-center overflow-hidden bg-secondary-950 pt-24 pb-20">
         <div className="absolute inset-0 z-0">
           <OptimizedImage 
-            src="https://images.unsplash.com/photo-1523966211575-eb4a01e7dd51?auto=format&fit=crop&q=80&w=1600" 
+            src="/images/pages/contact-hero.jpg" 
             alt="Contact background" 
             className="w-full h-full object-cover opacity-20 scale-110 blur-[2px]"
             priority={true}
