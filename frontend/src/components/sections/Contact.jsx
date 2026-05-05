@@ -66,20 +66,20 @@ function Contact() {
               <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                   <div>
-                    <label className="block text-sm font-bold text-secondary-900 mb-2">Name *</label>
-                    <input {...register('name')} placeholder="Your name" className={inputClass} />
+                    <label htmlFor="name" className="block text-sm font-bold text-secondary-900 mb-2">Name *</label>
+                    <input id="name" {...register('name')} placeholder="Your name" className={inputClass} autoComplete="name" />
                     {errors.name && <p className="text-red-500 text-xs mt-1 font-medium">{errors.name.message}</p>}
                   </div>
                   <div>
-                    <label className="block text-sm font-bold text-secondary-900 mb-2">Email *</label>
-                    <input {...register('email')} type="email" placeholder="your@email.com" className={inputClass} />
+                    <label htmlFor="email" className="block text-sm font-bold text-secondary-900 mb-2">Email *</label>
+                    <input id="email" {...register('email')} type="email" placeholder="your@email.com" className={inputClass} autoComplete="email" />
                     {errors.email && <p className="text-red-500 text-xs mt-1 font-medium">{errors.email.message}</p>}
                   </div>
                 </div>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                   <div>
-                    <label className="block text-sm font-bold text-secondary-900 mb-2">Phone</label>
-                    <input {...register('phone')} placeholder="+91 XXXXX XXXXX" className={inputClass} />
+                    <label htmlFor="phone" className="block text-sm font-bold text-secondary-900 mb-2">Phone</label>
+                    <input id="phone" {...register('phone')} placeholder="+91 XXXXX XXXXX" className={inputClass} autoComplete="tel" />
                   </div>
                   <div>
                     <label htmlFor="service" className="block text-sm font-bold text-secondary-900 mb-2">Service *</label>
@@ -91,8 +91,8 @@ function Contact() {
                   </div>
                 </div>
                 <div>
-                  <label className="block text-sm font-bold text-secondary-900 mb-2">Message *</label>
-                  <textarea {...register('message')} rows={5} placeholder="Tell us about your project..." className={`${inputClass} resize-none`} />
+                  <label htmlFor="message" className="block text-sm font-bold text-secondary-900 mb-2">Message *</label>
+                  <textarea id="message" {...register('message')} rows={5} placeholder="Tell us about your project..." className={`${inputClass} resize-none`} />
                   {errors.message && <p className="text-red-500 text-xs mt-1 font-medium">{errors.message.message}</p>}
                 </div>
                 <Button type="submit" variant="primary" size="lg" loading={loading} className="w-full sm:w-auto rounded-full px-10 shadow-glow">

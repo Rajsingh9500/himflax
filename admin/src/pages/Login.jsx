@@ -54,26 +54,30 @@ function Login() {
         <div className="glass-dark rounded-[2.5rem] shadow-2xl p-8 sm:p-10 border border-white/10 backdrop-blur-xl">
           <form onSubmit={handleSubmit} className="space-y-6">
             <div>
-              <label className="block text-sm font-bold text-secondary-300 mb-2 uppercase tracking-wide">Email Address</label>
+              <label htmlFor="email" className="block text-sm font-bold text-secondary-300 mb-2 uppercase tracking-wide">Email Address</label>
               <input 
+                id="email"
                 type="email" 
                 value={email} 
                 onChange={(e) => setEmail(e.target.value)} 
                 required 
                 className="w-full px-5 py-4 rounded-xl bg-secondary-900/50 border border-secondary-700 text-white placeholder:text-secondary-500 focus:bg-secondary-900 focus:outline-none focus:ring-2 focus:ring-primary-500/50 focus:border-primary-500 transition-all font-medium" 
                 placeholder="admin@himflax.com" 
+                autoComplete="email"
               />
             </div>
             <div>
-              <label className="block text-sm font-bold text-secondary-300 mb-2 uppercase tracking-wide">Password</label>
+              <label htmlFor="password" className="block text-sm font-bold text-secondary-300 mb-2 uppercase tracking-wide">Password</label>
               <div className="relative">
                 <input 
+                  id="password"
                   type={showPw ? 'text' : 'password'} 
                   value={password} 
                   onChange={(e) => setPassword(e.target.value)} 
                   required 
                   className="w-full px-5 py-4 rounded-xl bg-secondary-900/50 border border-secondary-700 text-white placeholder:text-secondary-500 focus:bg-secondary-900 focus:outline-none focus:ring-2 focus:ring-primary-500/50 focus:border-primary-500 pr-12 transition-all font-medium" 
                   placeholder="••••••••" 
+                  autoComplete="current-password"
                 />
                 <button 
                   type="button" 

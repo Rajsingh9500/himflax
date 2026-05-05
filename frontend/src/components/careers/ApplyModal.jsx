@@ -89,18 +89,18 @@ const ApplyModal = memo(function ApplyModal({ job, onClose }) {
             <div className="grid sm:grid-cols-2 gap-6">
               <div>
                 <label htmlFor="name" className="block text-xs font-black uppercase tracking-widest text-secondary-900 mb-2 ml-1">Full Name *</label>
-                <input id="name" {...register('name')} className={inputClass} placeholder="John Doe" />
+                <input id="name" {...register('name')} className={inputClass} placeholder="John Doe" autoComplete="name" />
                 {errors.name && <p className="text-red-500 text-[10px] mt-1 font-bold uppercase">{errors.name.message}</p>}
               </div>
               <div>
                 <label htmlFor="email" className="block text-xs font-black uppercase tracking-widest text-secondary-900 mb-2 ml-1">Email Address *</label>
-                <input id="email" {...register('email')} type="email" className={inputClass} placeholder="john@example.com" />
+                <input id="email" {...register('email')} type="email" className={inputClass} placeholder="john@example.com" autoComplete="email" />
                 {errors.email && <p className="text-red-500 text-[10px] mt-1 font-bold uppercase">{errors.email.message}</p>}
               </div>
             </div>
             <div>
               <label htmlFor="phone" className="block text-xs font-black uppercase tracking-widest text-secondary-900 mb-2 ml-1">Phone Number</label>
-              <input id="phone" {...register('phone')} className={inputClass} placeholder="+91 XXXXX XXXXX" />
+              <input id="phone" {...register('phone')} className={inputClass} placeholder="+91 XXXXX XXXXX" autoComplete="tel" />
             </div>
             <div>
               <label htmlFor="coverLetter" className="block text-xs font-black uppercase tracking-widest text-secondary-900 mb-2 ml-1">Cover Letter</label>

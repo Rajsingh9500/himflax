@@ -32,8 +32,19 @@ function createApp() {
   // Trust proxy (required behind Render/Vercel reverse proxies)
   app.set('trust proxy', 1);
 
-  // Security middleware
-  app.use(helmet());
+  // Security middleware — configured for Cloudinary/Unsplash and allows 'unsafe-eval' if required by frontend libs
+  app.use(
+    helmet({
+      contentSecurityPolicy: {
+        directives: {
+          ...helmet.contentSecurityPolicy.getDefaultDirectives(),
+          'script-src': ["'self'", "'unsafe-inline'", "'unsafe-eval'", 'https://*.cloudinary.com'],
+          'img-src': ["'self'", 'data:', 'blob:', 'https://*.cloudinary.com', 'https://images.unsplash.com'],
+          'connect-src': ["'self'", 'https://*.cloudinary.com', 'https://himflax.onrender.com'],
+        },
+      },
+    })
+  );
 
   // Compression — gzip all responses (~70% smaller)
   app.use(compression());

@@ -56,18 +56,18 @@ export default function JobForm({ initialData = null, onSubmit, loading, onCance
     <form onSubmit={handleSubmit(handleFormSubmit)} className="space-y-8 bg-white p-8 sm:p-10 rounded-[2.5rem] shadow-sm border border-secondary-100">
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
         <div>
-          <label className="block text-sm font-bold text-secondary-900 mb-2 uppercase tracking-wide">Job Title *</label>
-          <input {...register('title')} className={inputClass} placeholder="e.g. Senior Frontend Developer" />
+          <label htmlFor="title" className="block text-sm font-bold text-secondary-900 mb-2 uppercase tracking-wide">Job Title *</label>
+          <input id="title" {...register('title')} className={inputClass} placeholder="e.g. Senior Frontend Developer" />
           {errors.title && <p className="text-red-500 text-xs mt-1.5 font-bold">{errors.title.message}</p>}
         </div>
         <div>
-          <label className="block text-sm font-bold text-secondary-900 mb-2 uppercase tracking-wide">Department *</label>
-          <input {...register('department')} className={inputClass} placeholder="e.g. Engineering" />
+          <label htmlFor="department" className="block text-sm font-bold text-secondary-900 mb-2 uppercase tracking-wide">Department *</label>
+          <input id="department" {...register('department')} className={inputClass} placeholder="e.g. Engineering" />
           {errors.department && <p className="text-red-500 text-xs mt-1.5 font-bold">{errors.department.message}</p>}
         </div>
         <div>
-          <label className="block text-sm font-bold text-secondary-900 mb-2 uppercase tracking-wide">Location *</label>
-          <input {...register('location')} className={inputClass} placeholder="e.g. New York, NY" />
+          <label htmlFor="location" className="block text-sm font-bold text-secondary-900 mb-2 uppercase tracking-wide">Location *</label>
+          <input id="location" {...register('location')} className={inputClass} placeholder="e.g. New York, NY" />
           {errors.location && <p className="text-red-500 text-xs mt-1.5 font-bold">{errors.location.message}</p>}
         </div>
         <div>
@@ -81,20 +81,20 @@ export default function JobForm({ initialData = null, onSubmit, loading, onCance
           {errors.type && <p className="text-red-500 text-xs mt-1.5 font-bold">{errors.type.message}</p>}
         </div>
         <div>
-          <label className="block text-sm font-bold text-secondary-900 mb-2 uppercase tracking-wide">Experience *</label>
-          <input {...register('experience')} className={inputClass} placeholder="e.g. 3-5 Years" />
+          <label htmlFor="experience" className="block text-sm font-bold text-secondary-900 mb-2 uppercase tracking-wide">Experience *</label>
+          <input id="experience" {...register('experience')} className={inputClass} placeholder="e.g. 3-5 Years" />
           {errors.experience && <p className="text-red-500 text-xs mt-1.5 font-bold">{errors.experience.message}</p>}
         </div>
         <div>
-          <label className="block text-sm font-bold text-secondary-900 mb-2 uppercase tracking-wide">Salary (Optional)</label>
-          <input {...register('salary')} className={inputClass} placeholder="e.g. $100k - $130k" />
+          <label htmlFor="salary" className="block text-sm font-bold text-secondary-900 mb-2 uppercase tracking-wide">Salary (Optional)</label>
+          <input id="salary" {...register('salary')} className={inputClass} placeholder="e.g. $100k - $130k" />
         </div>
       </div>
 
       <div>
-        <label className="block text-sm font-bold text-secondary-900 mb-2 uppercase tracking-wide">Skills Required</label>
+        <label htmlFor="skillInput" className="block text-sm font-bold text-secondary-900 mb-2 uppercase tracking-wide">Skills Required</label>
         <div className="flex gap-2">
-          <input value={skillInput} onChange={(e) => setSkillInput(e.target.value)} onKeyPress={(e) => e.key === 'Enter' && handleAddSkill(e)} className={inputClass} placeholder="e.g. React.js (Press Add)" />
+          <input id="skillInput" value={skillInput} onChange={(e) => setSkillInput(e.target.value)} onKeyPress={(e) => e.key === 'Enter' && handleAddSkill(e)} className={inputClass} placeholder="e.g. React.js (Press Add)" />
           <button type="button" onClick={handleAddSkill} className="px-6 py-3.5 bg-secondary-900 text-white rounded-xl font-bold hover:bg-secondary-800 transition-colors flex items-center gap-2">
             <HiPlus /> Add
           </button>
@@ -112,15 +112,15 @@ export default function JobForm({ initialData = null, onSubmit, loading, onCance
       </div>
 
       <div>
-        <label className="block text-sm font-bold text-secondary-900 mb-2 uppercase tracking-wide">Job Description *</label>
-        <textarea {...register('description')} rows={6} className={`${inputClass} resize-none`} placeholder="Detailed responsibilities and requirements..." />
+        <label htmlFor="description" className="block text-sm font-bold text-secondary-900 mb-2 uppercase tracking-wide">Job Description *</label>
+        <textarea id="description" {...register('description')} rows={6} className={`${inputClass} resize-none`} placeholder="Detailed responsibilities and requirements..." />
         {errors.description && <p className="text-red-500 text-xs mt-1.5 font-bold">{errors.description.message}</p>}
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
         <div>
-          <label className="block text-sm font-bold text-secondary-900 mb-2 uppercase tracking-wide">Application Deadline *</label>
-          <input type="date" {...register('lastDate')} className={inputClass} />
+          <label htmlFor="lastDate" className="block text-sm font-bold text-secondary-900 mb-2 uppercase tracking-wide">Application Deadline *</label>
+          <input id="lastDate" type="date" {...register('lastDate')} className={inputClass} />
           {errors.lastDate && <p className="text-red-500 text-xs mt-1.5 font-bold">{errors.lastDate.message}</p>}
         </div>
         <div className="flex items-center">
