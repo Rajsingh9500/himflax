@@ -1,10 +1,10 @@
-// frontend/src/App.jsx
-import { lazy, Suspense } from 'react';
+import { lazy, Suspense, useEffect } from 'react';
 import { Routes, Route, useLocation } from 'react-router-dom';
 import { AnimatePresence } from 'framer-motion';
 import Navbar from './components/layout/Navbar';
 import Footer from './components/layout/Footer';
 import OccasionPopup from './components/ui/OccasionPopup';
+import axiosInstance from './api/axiosInstance';
 
 // Lazy load pages
 const Home = lazy(() => import('./pages/Home'));
@@ -25,6 +25,14 @@ const PageLoader = () => (
 
 function App() {
   const location = useLocation();
+
+  // Pre-warm the backend (kickstarts Render cold boot)
+  useEffect(() => {
+    // We don't need to wait for this, just fire it off
+    axiosInstance.get('/health').catch(() => {
+      /* ignore errors, we just want to trigger the server */
+    });
+  }, []);
 
   return (
     <div className="min-h-screen flex flex-col">

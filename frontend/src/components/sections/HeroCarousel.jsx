@@ -4,6 +4,8 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { HiChevronLeft, HiChevronRight, HiArrowRight } from 'react-icons/hi';
 import { useBanners } from '../../hooks/useBanners';
 
+import { optimizeCloudinaryUrl } from '../../utils/cloudinary';
+
 function HeroCarousel() {
   const { banners, isLoading } = useBanners();
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -70,7 +72,7 @@ function HeroCarousel() {
           className="absolute inset-0 z-0"
         >
           <motion.img
-            src={currentBanner.imageUrl}
+            src={optimizeCloudinaryUrl(currentBanner.imageUrl, { width: 1920 })}
             alt={currentBanner.title}
             className="w-full h-full object-cover"
             loading={currentIndex === 0 ? 'eager' : 'lazy'}

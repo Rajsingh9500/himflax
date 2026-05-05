@@ -9,6 +9,7 @@ import { uploadImage } from '../api/upload';
 import toast from 'react-hot-toast';
 import { HiPlus, HiPencil, HiTrash, HiX, HiPhotograph, HiLink, HiCloudUpload } from 'react-icons/hi';
 import { motion, AnimatePresence } from 'framer-motion';
+import { optimizeCloudinaryUrl } from '../utils/cloudinary';
 
 const bannerSchema = z.object({
   title: z.string().min(1, 'Title is required').max(100),
@@ -226,7 +227,7 @@ export default function Banners() {
                 <tr key={banner._id} className="hover:bg-secondary-50/50 transition-colors">
                   <td className="p-4 font-medium">{banner.order}</td>
                   <td className="p-4">
-                    <img src={banner.imageUrl} alt={banner.title} className="w-20 h-12 object-cover rounded-md" />
+                    <img src={optimizeCloudinaryUrl(banner.imageUrl, { width: 150 })} alt={banner.title} className="w-20 h-12 object-cover rounded-md" />
                   </td>
                   <td className="p-4 font-semibold text-secondary-900">{banner.title}</td>
                   <td className="p-4"><span className="px-2 py-1 rounded bg-secondary-100 text-xs font-bold uppercase">{banner.overlayTheme}</span></td>
@@ -381,7 +382,7 @@ export default function Banners() {
                       {currentImageUrl && (
                         <div className="mt-3 relative group">
                           <img
-                            src={currentImageUrl}
+                            src={optimizeCloudinaryUrl(currentImageUrl, { width: 800 })}
                             alt="Preview"
                             className="w-full h-40 object-cover rounded-xl border border-secondary-200"
                             onError={(e) => { e.target.style.display = 'none'; }}
